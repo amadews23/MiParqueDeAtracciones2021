@@ -114,7 +114,7 @@ public class Cliente extends Persona{
 
 	public void setEsCarnetJoven(boolean esCarnetJoven) {
 		this.esCarnetJoven = esCarnetJoven;
-	}7
+	}
 
 	public boolean isEsDesempleado() {
 		return esDesempleado;
