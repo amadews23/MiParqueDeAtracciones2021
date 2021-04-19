@@ -3,8 +3,8 @@
  */
 package gente;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Clase Cliente que representa los visitantes
@@ -128,7 +128,6 @@ public class Cliente extends Persona{
     @Override
     public String toString() {
         
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MMMMMM/yyyy");
         String estudiante = "No";
         String carnetJoven = "No";
         String discapacitado = "No";
@@ -149,8 +148,8 @@ public class Cliente extends Persona{
         if (esDesempleado == true) {
             desempleado="Si";
         }
-        return "\nCliente: " + getNombre() + " "+ getApellidos()
-                + "\nFecha de Nacimiento: " + formatoFecha.format(getFechaNacimiento())
+        return "\nCliente: " + getNombre() + " " + getApellidos()
+                + "\n Fecha de Nacimiento: " + getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
                 + "\n Estudiante: " + estudiante
                 + "\n Discapacitado: " + discapacitado
                 + "\n Carnet Joven: " + carnetJoven
@@ -159,4 +158,4 @@ public class Cliente extends Persona{
 }
 
 
-}
+
