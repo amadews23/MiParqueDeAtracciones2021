@@ -3,12 +3,13 @@
  */
 package gente;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 /**
  * Clase Cliente que representa los visitantes
  * @author Bartolome Vich Lozano
- * @version 1.0
+ * @version 1.1
  *
  */
 
@@ -124,15 +125,38 @@ public class Cliente extends Persona{
 		this.esDesempleado = esDesempleado;
 	}
 	
-	@Override
-	public String toString() {
-		return "Cliente [getAltura()=" + getAltura() + ", isEsEstudiante()=" + isEsEstudiante()
-				+ ", isEsDiscapacitado()=" + isEsDiscapacitado() + ", isEsCarnetJoven()=" + isEsCarnetJoven()
-				+ ", isEsDesempleado()=" + isEsDesempleado() + ", getNombre()=" + getNombre() + ", getApellidos()="
-				+ getApellidos() + ", getDni()=" + getDni() + ", getFechaNacimiento()=" + getFechaNacimiento()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
-	}
+    @Override
+    public String toString() {
+        
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MMMMMM/yyyy");
+        String estudiante = "No";
+        String carnetJoven = "No";
+        String discapacitado = "No";
+        String desempleado = "No";
+        
+        if (esEstudiante == true) {
+            estudiante="Si";
+        }
+        
+        if (esCarnetJoven == true) {
+            carnetJoven="Si";
+        }
+        
+        if (esDiscapacitado == true) {
+            discapacitado="Si";
+        }
+        
+        if (esDesempleado == true) {
+            desempleado="Si";
+        }
+        return "\nCliente: " + getNombre() + " "+ getApellidos()
+                + "\nFecha de Nacimiento: " + formatoFecha.format(getFechaNacimiento())
+                + "\n Estudiante: " + estudiante
+                + "\n Discapacitado: " + discapacitado
+                + "\n Carnet Joven: " + carnetJoven
+                + "\n Desempleado: " + desempleado ;
+    }
+}
 
 
 }
