@@ -24,6 +24,10 @@ public class Cliente extends Persona implements TiposPersona {
 	private boolean esDesempleado;
 	private TipoCliente tipoCliente;
 	
+	public TipoCliente getTipoCliente() {
+		return tipoCliente;
+	}
+
 	/**
 	 * @param nombre
 	 * @param apellidos
@@ -52,7 +56,7 @@ public class Cliente extends Persona implements TiposPersona {
 		this.esDiscapacitado = esDiscapacitado;
 		this.esCarnetJoven = esCarnetJoven;
 		this.esDesempleado = esDesempleado;
-		configurarTipoCliente();
+		this.tipoCliente = configurarTipoCliente(this.getEdad());
 	}
 	
 	/**
@@ -85,7 +89,7 @@ public class Cliente extends Persona implements TiposPersona {
 		this.esDiscapacitado = esDiscapacitado;
 		this.esCarnetJoven = esCarnetJoven;
 		this.esDesempleado = esDesempleado;
-		configurarTipoCliente();
+		this.tipoCliente = configurarTipoCliente(this.getEdad());
 	}	
 
 	public int getAltura() {
@@ -128,15 +132,32 @@ public class Cliente extends Persona implements TiposPersona {
 		this.esDesempleado = esDesempleado;
 	}
 	
-	private void configurarTipoCliente() {
+	private TipoCliente configurarTipoCliente(int edad) {
 		
-		this.tipoCliente = tipoCliente.devolverTipoCliente(this.getEdad());
+		if (edad < TipoCliente.BEBE.getEdadMin()) {
+			return null;
+			
+		} if (edad >= TipoCliente.BEBE.getEdadMin() && edad <= TipoCliente.BEBE.getEdadMax()) {
+			return TipoCliente.BEBE;
+			
+		} if (edad >= TipoCliente.NINYO.getEdadMin() && edad <= TipoCliente.NINYO.getEdadMax() ) {
+			return TipoCliente.NINYO;
+			
+		} if (edad >= TipoCliente.ADULTO.getEdadMin() && edad <= TipoCliente.ADULTO.getEdadMax()) {
+			return TipoCliente.ADULTO;
+			
+		} if (edad >= TipoCliente.SENIOR.getEdadMin() && edad <= TipoCliente.SENIOR.getEdadMax()) {
+			return TipoCliente.SENIOR;
+			
+		}else {
+			return null;
+		}
 	}
 	
 	@Override	
 	public String devolverTipoPersona() {
 		
-		return this.tipoCliente.getNombreTipoCliente();
+		return configurarTipoCliente(this.getEdad()).getNombreTipoCliente();
 		
 	}
 	
@@ -165,7 +186,7 @@ public class Cliente extends Persona implements TiposPersona {
         }
         return "\nCliente: " + getNombre() + " " + getApellidos()
                 //+ "\n Fecha de Nacimiento: " + getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
-                + "\n Edad:" + getEdad()
+                + "\n Edad:" + this.getEdad()
                 + "\n Estudiante: " + estudiante
                 + "\n Discapacitado: " + discapacitado
                 + "\n Carnet Joven: " + carnetJoven
