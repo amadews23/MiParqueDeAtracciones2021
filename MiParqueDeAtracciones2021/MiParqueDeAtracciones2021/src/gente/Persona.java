@@ -8,7 +8,7 @@ import java.time.Period;
  * @version 1.2
  *
  */
-public class Persona {
+public class Persona implements TiposPersona{
 	
 	private String nombre;
 	private String apellidos;
