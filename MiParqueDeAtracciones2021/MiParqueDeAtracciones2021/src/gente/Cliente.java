@@ -4,7 +4,7 @@
 package gente;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 
 /**
  * Clase Cliente que representa los visitantes
@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
  *
  */
 
-public class Cliente extends Persona{
+public class Cliente extends Persona implements TiposPersona {
 
 
 
@@ -22,6 +22,7 @@ public class Cliente extends Persona{
 	private boolean esDiscapacitado;
 	private boolean esCarnetJoven;
 	private boolean esDesempleado;
+	private TipoCliente tipoCliente;
 	
 	/**
 	 * @param nombre
@@ -51,6 +52,7 @@ public class Cliente extends Persona{
 		this.esDiscapacitado = esDiscapacitado;
 		this.esCarnetJoven = esCarnetJoven;
 		this.esDesempleado = esDesempleado;
+		configurarTipoCliente();
 	}
 	
 	/**
@@ -83,6 +85,7 @@ public class Cliente extends Persona{
 		this.esDiscapacitado = esDiscapacitado;
 		this.esCarnetJoven = esCarnetJoven;
 		this.esDesempleado = esDesempleado;
+		configurarTipoCliente();
 	}	
 
 	public int getAltura() {
@@ -125,6 +128,18 @@ public class Cliente extends Persona{
 		this.esDesempleado = esDesempleado;
 	}
 	
+	private void configurarTipoCliente() {
+		
+		this.tipoCliente = tipoCliente.devolverTipoCliente(this.getEdad());
+	}
+	
+	@Override	
+	public String devolverTipoPersona() {
+		
+		return this.tipoCliente.getNombreTipoCliente();
+		
+	}
+	
     @Override
     public String toString() {
         
@@ -149,7 +164,8 @@ public class Cliente extends Persona{
             desempleado="Si";
         }
         return "\nCliente: " + getNombre() + " " + getApellidos()
-                + "\n Fecha de Nacimiento: " + getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
+                //+ "\n Fecha de Nacimiento: " + getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
+                + "\n Edad:" + getEdad()
                 + "\n Estudiante: " + estudiante
                 + "\n Discapacitado: " + discapacitado
                 + "\n Carnet Joven: " + carnetJoven
