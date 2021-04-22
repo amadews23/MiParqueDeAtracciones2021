@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * @version 1.10 2021/4/22
  */
 
-public class Empleado extends Persona {
+public class Empleado extends Persona implements TiposPersona {
   
     private TipoEmpleado tipoEmpleado;
     private float sueldo;
