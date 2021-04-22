@@ -1,6 +1,7 @@
 package gente;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * @author Bartolome Vich Lozano
@@ -51,6 +52,10 @@ public class Persona {
 	}
 	public String getApellidos() {
 		return apellidos;
+	}
+	public int getEdad() {
+		return	Period.between(fechaNacimiento, LocalDate.now()).getYears();
+	
 	}
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
