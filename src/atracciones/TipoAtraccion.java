@@ -5,7 +5,7 @@ package atracciones;
 * @author Bartolome Vich Lozano
 * @version 1.10 2019/7/31
 */
-public enum EnumTipoAtraccion {
+public enum TipoAtraccion {
 
    //Cuando altura es 0 es que no hay limitación
    TIPO_A("Atracción Tipo A",true,true,120,0,true,6,1,2,1),
@@ -25,7 +25,7 @@ public enum EnumTipoAtraccion {
    private final int numEmpleadosAtenciones;
    private final int numEmpleadosRelaciones;
 
-   private EnumTipoAtraccion(String nombreTipotraccion, 
+   private TipoAtraccion(String nombreTipotraccion, 
                              boolean admiteAdultos, 
                              boolean admiteNinyos, 
                              int alturaMin, 
